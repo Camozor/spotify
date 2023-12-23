@@ -1,21 +1,12 @@
 M = {}
 
-
-local function play()
-	os.execute(
-		"dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play"
-	)
-end
-
-local function pause()
-	os.execute(
-		"dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause"
-	)
-end
+local controller = require("spotify.controller")
 
 local commands = {
-	["play"] = play,
-	["pause"] = pause
+	["play"] = controller.play,
+	["pause"] = controller.pause,
+	["previous"] = controller.previous_track,
+	["next"] = controller.next_track,
 }
 
 local function command(opts)
@@ -31,7 +22,6 @@ end
 local function command_complete()
 	return vim.tbl_keys(commands)
 end
-
 
 M.setup = function()
 	vim.api.nvim_create_user_command("Spotify", command, {
