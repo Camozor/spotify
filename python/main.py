@@ -1,7 +1,6 @@
 from pynvim import attach
 import os
 
-print(os.environ['NVIM_SOCKET'])
 nvim = attach('socket', path=os.environ['NVIM_SOCKET'])
 nvim.command('echo "Hello from python!!"')
 

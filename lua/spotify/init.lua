@@ -23,10 +23,8 @@ local function command_complete()
 	return vim.tbl_keys(commands)
 end
 
---- @alias setup_opts {python_program_path: string}
-
----@param opts setup_opts
 M.setup = function(opts)
+	print(vim.inspect(opts))
 	vim.api.nvim_create_user_command("Spotify", command, {
 		nargs = "?",
 		complete = command_complete,
@@ -34,10 +32,9 @@ M.setup = function(opts)
 		force = true,
 	})
 
-	local rpc_socket = vim.fn.serverlist()[1]
 
-	local r = os.execute(string.format("cd %s && NVIM_SOCKET=%s ./start.sh &", opts.python_program_path, rpc_socket))
-	print(r)
+	-- local rpc_socket = vim.fn.serverlist()[1]
+	-- os.execute(string.format("cd python && NVIM_SOCKET=%s ./start.sh &", rpc_socket))
 end
 
 return M
