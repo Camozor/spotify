@@ -23,18 +23,13 @@ local function command_complete()
 	return vim.tbl_keys(commands)
 end
 
-M.setup = function(opts)
-	print(vim.inspect(opts))
+M.setup = function()
 	vim.api.nvim_create_user_command("Spotify", command, {
 		nargs = "?",
 		complete = command_complete,
 		desc = "Command entrypoint for spotify",
 		force = true,
 	})
-
-
-	-- local rpc_socket = vim.fn.serverlist()[1]
-	-- os.execute(string.format("cd python && NVIM_SOCKET=%s ./start.sh &", rpc_socket))
 end
 
 return M
