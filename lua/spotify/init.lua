@@ -7,6 +7,8 @@ local commands = {
 	["pause"] = controller.pause,
 	["previous"] = controller.previous_track,
 	["next"] = controller.next_track,
+	["raise"] = controller.raise,
+	["quit"] = controller.quit,
 }
 
 local function command(opts)
